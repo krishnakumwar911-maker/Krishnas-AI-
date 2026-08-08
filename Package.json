@@ -1,0 +1,15 @@
+{
+  "name": "krishnas-ai",
+  "version": "1.0.0",
+  "description": "KRISHNAS AI personal assistant",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "cors": "latest",
+    "dotenv": "latest",
+    "express": "latest",
+    "openai": "latest"
+  }
+}
