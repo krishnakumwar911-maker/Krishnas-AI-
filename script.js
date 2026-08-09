@@ -117,7 +117,9 @@ async function sendMessage() {
 
 
         if (!response.ok) {
-            throw new Error("Backend unavailable");
+    const errorData = await response.json().catch(() => ({}));
+    throw new Error(errorData.error || `Server error: ${response.status}`);
+        }
         }
 
 
@@ -136,9 +138,9 @@ async function sendMessage() {
         removeTyping();
 
         addMessage(
-            "I'm not connected to my AI brain yet. The backend will be connected in the next step.",
-            "ai"
-        );
+    "AI Error: " + error.message,
+    "ai"
+);
 
         console.log("Backend connection:", error);
 
