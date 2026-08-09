@@ -15,15 +15,19 @@ export default async function handler(req, res) {
     }
 
     const response = await fetch(
-      "https://api.deepseek.com/chat/completions",
+      "https://openrouter.ai/api/v1/chat/completions",
       {
         method: "POST",
+
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${process.env.DEEPSEEK_API_KEY}`
+          "Authorization": `Bearer ${process.env.OPENROUTER_API_KEY}`,
+          "HTTP-Referer": "https://krishnas-ai.vercel.app",
+          "X-Title": "Krishnas AI"
         },
+
         body: JSON.stringify({
-          model: "deepseek-chat",
+          model: "nvidia/nemotron-nano-9b-v2:free",
           messages: [
             {
               role: "system",
@@ -41,10 +45,10 @@ export default async function handler(req, res) {
     const data = await response.json();
 
     if (!response.ok) {
-      console.error("DeepSeek API Error:", data);
+      console.error("OpenRouter API Error:", data);
 
       return res.status(response.status).json({
-        error: data.error?.message || "DeepSeek API request failed"
+        error: data.error?.message || "OpenRouter API request failed"
       });
     }
 
