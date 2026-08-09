@@ -119,8 +119,7 @@ async function sendMessage() {
         if (!response.ok) {
     throw new Error("Backend unavailable");
         }
-        }
-
+        
 
         const data = await response.json();
 
