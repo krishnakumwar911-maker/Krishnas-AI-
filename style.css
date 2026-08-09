@@ -418,3 +418,222 @@ button {
         padding: 14px 10px;
     }
 }
+/* =========================================
+   CHAT HISTORY SIDEBAR
+========================================= */
+
+.chat-history {
+    position: fixed;
+    top: 0;
+    right: -360px;
+    width: 340px;
+    height: 100vh;
+
+    background: #ffffff;
+
+    z-index: 9999;
+
+    padding: 20px;
+
+    box-sizing: border-box;
+
+    box-shadow: -8px 0 30px rgba(0, 0, 0, 0.15);
+
+    display: flex;
+    flex-direction: column;
+
+    transition: right 0.35s ease;
+}
+
+
+/* OPEN SIDEBAR */
+
+.chat-history.active {
+    right: 0;
+}
+
+
+/* HEADER */
+
+.history-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding-bottom: 18px;
+
+    border-bottom: 1px solid #e5e7eb;
+}
+
+
+.history-header h3 {
+    margin: 0;
+
+    font-size: 20px;
+
+    color: #111827;
+}
+
+
+/* CLOSE BUTTON */
+
+#closeHistory {
+    width: 38px;
+    height: 38px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #f3f4f6;
+
+    color: #111827;
+
+    font-size: 18px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+
+#closeHistory:hover {
+    background: #e5e7eb;
+}
+
+
+/* NEW CHAT BUTTON */
+
+.new-chat-btn {
+    width: 100%;
+
+    margin-top: 18px;
+
+    padding: 13px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: #111827;
+
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.25s;
+}
+
+
+.new-chat-btn:hover {
+    transform: translateY(-1px);
+
+    opacity: 0.9;
+}
+
+
+/* HISTORY LIST */
+
+.history-list {
+    flex: 1;
+
+    overflow-y: auto;
+
+    margin-top: 18px;
+
+    padding-right: 4px;
+}
+
+
+/* CHAT ITEM */
+
+.history-item {
+    padding: 13px 14px;
+
+    margin-bottom: 8px;
+
+    border-radius: 12px;
+
+    background: #f8fafc;
+
+    color: #1f2937;
+
+    font-size: 14px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+
+.history-item:hover {
+    background: #eef2ff;
+}
+
+
+/* EMPTY HISTORY */
+
+.history-empty {
+    text-align: center;
+
+    margin-top: 40px;
+
+    color: #9ca3af;
+
+    font-size: 14px;
+}
+
+
+/* CLEAR BUTTON */
+
+.clear-history-btn {
+    width: 100%;
+
+    padding: 12px;
+
+    margin-top: 15px;
+
+    border: 1px solid #fee2e2;
+
+    border-radius: 12px;
+
+    background: #fff5f5;
+
+    color: #dc2626;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+
+.clear-history-btn:hover {
+    background: #fee2e2;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+    .chat-history {
+        width: 100%;
+
+        right: -100%;
+    }
+
+    .chat-history.active {
+        right: 0;
+    }
+
+}
