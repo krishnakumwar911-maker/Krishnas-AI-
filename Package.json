@@ -1,6 +1,7 @@
 {
   "name": "krishnas-ai",
   "version": "1.0.0",
+  "type":"module",
   "description": "KRISHNAS AI personal assistant",
   "main": "server.js",
   "scripts": {
