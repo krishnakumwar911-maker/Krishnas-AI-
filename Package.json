@@ -11,6 +11,6 @@
     "cors": "latest",
     "dotenv": "latest",
     "express": "latest",
-    "openai": "latest"
+    "openai": "^5.12.2"
   }
 }
