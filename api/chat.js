@@ -27,7 +27,7 @@ export default async function handler(req, res) {
         },
 
         body: JSON.stringify({
-          model:model:model: "nvidia/nemotron-nano-9b-v2:free",
+          model:"nvidia/nemotron-nano-9b-v2:free",
 
           messages: [
             {
