@@ -14,36 +14,45 @@ export default async function handler(req, res) {
       });
     }
 
-    const response = await fetch("https://api.openai.com/v1/responses", {
-      method: "POST",
-
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`
-      },
-
-      body: JSON.stringify({
-        model: "gpt-5-mini",
-        input: message
-      })
-    });
+    const response = await fetch(
+      "https://api.deepseek.com/chat/completions",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${process.env.DEEPSEEK_API_KEY}`
+        },
+        body: JSON.stringify({
+          model: "deepseek-chat",
+          messages: [
+            {
+              role: "system",
+              content: "You are Krishnas AI, a helpful personal AI assistant."
+            },
+            {
+              role: "user",
+              content: message
+            }
+          ]
+        })
+      }
+    );
 
     const data = await response.json();
 
     if (!response.ok) {
-      console.error("OpenAI API Error:", data);
+      console.error("DeepSeek API Error:", data);
 
       return res.status(response.status).json({
-        error: data.error?.message || "OpenAI API request failed"
+        error: data.error?.message || "DeepSeek API request failed"
       });
     }
 
     return res.status(200).json({
-      reply: data.output_text || "No response received."
+      reply: data.choices?.[0]?.message?.content || "No response received."
     });
 
   } catch (error) {
-
     console.error("Server Error:", error);
 
     return res.status(500).json({
