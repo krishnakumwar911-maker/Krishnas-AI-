@@ -597,3 +597,118 @@ menuBtn.addEventListener(
 ========================================= */
 
 loadChatMemory();
+/* =========================================
+   CHAT HISTORY SIDEBAR
+========================================= */
+
+const chatHistory = document.getElementById("chatHistory");
+const closeHistory = document.getElementById("closeHistory");
+const newChatBtn = document.getElementById("newChatBtn");
+const historyList = document.getElementById("historyList");
+const clearHistoryBtn = document.getElementById("clearHistoryBtn");
+
+
+/* =========================================
+   SHOW CHAT HISTORY
+========================================= */
+
+function showChatHistory() {
+
+    historyList.innerHTML = "";
+
+    if (chatMemory.length === 0) {
+
+        historyList.innerHTML = `
+            <div class="history-empty">
+                No previous chats yet.
+            </div>
+        `;
+
+        return;
+    }
+
+
+    chatMemory
+        .filter(item => item.role === "user")
+        .forEach((item) => {
+
+            const historyItem =
+                document.createElement("div");
+
+            historyItem.className = "history-item";
+
+            historyItem.textContent = item.text;
+
+            historyList.appendChild(historyItem);
+
+        });
+
+}
+
+
+/* =========================================
+   OPEN MENU
+========================================= */
+
+menuBtn.addEventListener("click", () => {
+
+    chatHistory.classList.add("active");
+
+    showChatHistory();
+
+});
+
+
+/* =========================================
+   CLOSE MENU
+========================================= */
+
+closeHistory.addEventListener("click", () => {
+
+    chatHistory.classList.remove("active");
+
+});
+
+
+/* =========================================
+   NEW CHAT
+========================================= */
+
+newChatBtn.addEventListener("click", () => {
+
+    chatMemory = [];
+
+    saveMemory();
+
+    chatArea.innerHTML = "";
+
+    chatHistory.classList.remove("active");
+
+});
+
+
+/* =========================================
+   CLEAR ALL HISTORY
+========================================= */
+
+clearHistoryBtn.addEventListener("click", () => {
+
+    const confirmClear =
+        confirm(
+            "Are you sure you want to delete all chat history?"
+        );
+
+    if (!confirmClear) {
+        return;
+    }
+
+
+    chatMemory = [];
+
+    saveMemory();
+
+    chatArea.innerHTML = "";
+
+    showChatHistory();
+
+});
